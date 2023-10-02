@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Envios"
+        android:textColor="@color/white"
+        android:background="@color/main"
+        android:textSize="25dp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="3"
+        android:elevation="10dp"
+        android:padding="10dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingrese la id de su pedido: "
+                    android:layout_margin="7dp"
+                    android:textSize="18sp"/>
+
+                <EditText
+                    android:id="@+id/idPedido_input"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:inputType="number" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Elija su paquete: "
+                android:padding="7dp"
+                android:textSize="18sp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/cpeque_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Caja Pequeña" />
+
+                <RadioButton
+                    android:id="@+id/cmediana_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Caja Mediana" />
+
+                <RadioButton
+                    android:id="@+id/cgrande_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Caja Grande" />
+
+            </RadioGroup>
+            <Button
+                android:id="@+id/buttonEnviar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/main"
+                android:text="Enviar" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ID del pedido: "
+                        android:layout_margin="10dp"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/idPedido_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_margin="10dp"
+                        android:textSize="16sp"/>
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contenido: "
+                        android:layout_margin="10dp"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/contenido_pedido_txt"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_margin="10dp"
+                        android:textSize="16sp"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo de paquete: "
+                        android:layout_margin="10dp"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tipodepaquete_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_margin="10dp"
+                        android:textSize="16sp"/>
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/buttonCerrarSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/main"
+                android:text="Cerrar Sesión" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>
