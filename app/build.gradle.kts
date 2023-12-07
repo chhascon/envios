@@ -43,7 +43,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     implementation("com.google.firebase:firebase-database:16.0.1")
-    
+
+    //mqtt
+    implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0")
 
 
     // Add the dependencies for any other desired Firebase products

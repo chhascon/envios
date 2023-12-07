@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.proyectoandroid.BBDD.DataManager;
 import com.example.proyectoandroid.BBDD.FirebaseHelper;
 import com.example.proyectoandroid.BBDD.Usuario;
+import com.example.proyectoandroid.MQTT.MqttHandler;
 
 import java.util.List;
 
@@ -21,6 +22,11 @@ public class LoginActivity extends AppCompatActivity {
     Button btnIniciarSesion,btnCreateAccount;
     EditText et_Email, et_Password;
     FirebaseHelper firebaseHelper;
+    // MQTT ======================================================================
+    private static final String BROKER_URL = "tcp://androidteststiqq.cloud.shiftr.io:1883";
+    private static final String CLIENT_ID = "dilan ramirez";
+    private MqttHandler mqttHandler;
+    // MQTT ======================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         et_Email = findViewById(R.id.editTextTextEmailAddress);
         et_Password = findViewById(R.id.editTextTextPassword);
+
+        // MQTT ====================================================================
+        try{
+            mqttHandler = new MqttHandler();
+            mqttHandler.connect(BROKER_URL,CLIENT_ID);
+
+            subscribeToTopic("Tema1");
+            publishMessage("Tema1", "prueba");
+        }catch (Exception E){
+            String mensaje = E.getMessage().toString();
+            Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+        }
+        // MQTT ====================================================================
 
         //instanciar base de datos.
         firebaseHelper = new FirebaseHelper();
@@ -50,6 +69,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    // MQTT ======================================================================
+    private void publishMessage(String topic, String message){
+        Toast.makeText(this, "Publishing message: " + message, Toast.LENGTH_SHORT).show();
+        mqttHandler.publish(topic,message);
+    }
+    private void subscribeToTopic(String topic){
+        Toast.makeText(this, "Subscribing to topic "+ topic, Toast.LENGTH_SHORT).show();
+        mqttHandler.subscribe(topic);
+    }
+    // MQTT ====================================================================
+
     //funcion para verificar usuario
     private void verifUsuario(){
         //Recuperar la informacion en los edit text y pasarlos a String
