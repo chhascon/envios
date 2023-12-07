@@ -11,49 +11,79 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyectoandroid.BBDD.DataManager;
+import com.example.proyectoandroid.BBDD.FirebaseHelper;
+import com.example.proyectoandroid.BBDD.Pedido;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btnEnviar, btnCerrarSesion;
-    private EditText idPedido;
-    private TextView idPedido_txt, contenidoPedido_txt, tipoPaquete_txt;
-    private RadioButton cpeque,cmediana,cgrande;
+    private EditText idPedido, numCajaSmall, numCajaMid, numCajaBig;
+    private TextView idPedido_txt, tvCajaSmall, tvCajamid, tvCajaBig;
+    private FirebaseHelper firebaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnEnviar = (Button) findViewById(R.id.buttonEnviar);
-        btnCerrarSesion = (Button) findViewById(R.id.buttonCerrarSesion);
-        idPedido = (EditText) findViewById(R.id.idPedido_input);
+        // Inicializa FirebaseHelper
+        firebaseHelper = new FirebaseHelper();
 
-        tipoPaquete_txt = (TextView) findViewById(R.id.idPedido_txt);
-        contenidoPedido_txt = (TextView) findViewById(R.id.contenido_pedido_txt);
-        tipoPaquete_txt = (TextView) findViewById(R.id.tipodepaquete_txt);
+        btnEnviar = findViewById(R.id.buttonEnviar);
+        btnCerrarSesion = findViewById(R.id.buttonCerrarSesion);
+        idPedido = findViewById(R.id.idPedido_input);
+        numCajaSmall = findViewById(R.id.cantpequeña);
+        numCajaMid = findViewById(R.id.cantmediana);
+        numCajaBig = findViewById(R.id.cantgrande);
 
-        cpeque = (RadioButton) findViewById(R.id.cpeque_rb);
-        cmediana = (RadioButton) findViewById(R.id.cmediana_rb);
-        cgrande = (RadioButton) findViewById(R.id.cgrande_rb);
+        idPedido_txt = findViewById(R.id.idPedido_txt);
+        tvCajaSmall = findViewById(R.id.cantpequeña_txt);
+        tvCajamid = findViewById(R.id.cantmediana_txt);
+        tvCajaBig = findViewById(R.id.cantgrande_txt);
 
-        //onclick btnenviar
+        // onclick btnenviar
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Pedido actualizado correctamente ", Toast.LENGTH_SHORT).show();
-                //obtener el valor de id pedido y mostrarlo
-                idPedido_txt.setText(idPedido.getText().toString());
+                // Obtener datos de los EditText
+                int idPedidoValue = Integer.parseInt(idPedido.getText().toString());
+                int numCajaSmallValue = Integer.parseInt(numCajaSmall.getText().toString());
+                int numCajaMidValue = Integer.parseInt(numCajaMid.getText().toString());
+                int numCajaBigValue = Integer.parseInt(numCajaBig.getText().toString());
 
-                //mostrar el tipo de paquete
-                if(cpeque.isChecked()){
-                    tipoPaquete_txt.setText(cpeque.getText().toString());
-                } else if (cmediana.isChecked()) {
-                    tipoPaquete_txt.setText(cmediana.getText().toString());
-                } else if (cgrande.isChecked()) {
-                    tipoPaquete_txt.setText(cgrande.getText().toString());
-                }
+                // Crear un nuevo Pedido
+                Pedido nuevoPedido = new Pedido(idPedidoValue, numCajaSmallValue, numCajaMidValue, numCajaBigValue);
+
+                // Registrar el nuevo pedido
+                firebaseHelper.registerNewOrder(nuevoPedido, new DataManager.WriteOrderStatus() {
+                    @Override
+                    public void onOrderWriteSuccess() {
+                        // Actualizar los TextView con los datos del pedido registrado
+                        idPedido_txt.setText(String.valueOf(nuevoPedido.getID()));
+                        tvCajaSmall.setText(String.valueOf(nuevoPedido.getNumCajaSmall()));
+                        tvCajamid.setText(String.valueOf(nuevoPedido.getNumCajaMid()));
+                        tvCajaBig.setText(String.valueOf(nuevoPedido.getNumCajaBig()));
+                        // Actualizar los EditText con los nuevos valores
+                        idPedido.setText(String.valueOf(nuevoPedido.getID()));
+                        numCajaSmall.setText(String.valueOf(nuevoPedido.getNumCajaSmall()));
+                        numCajaMid.setText(String.valueOf(nuevoPedido.getNumCajaMid()));
+                        numCajaBig.setText(String.valueOf(nuevoPedido.getNumCajaBig()));
+
+                        // Mostrar un mensaje al usuario
+                        Toast.makeText(MainActivity.this, "Pedido registrado correctamente", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onOrderWriteFailure(String errorMessage) {
+                        // Manejar el error al registrar el pedido
+                        Toast.makeText(MainActivity.this, "Error al registrar el pedido: " + errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
-        //onclick cerrarsesion
+        // onclick cerrarsesion
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

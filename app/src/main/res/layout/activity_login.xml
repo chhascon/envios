@@ -49,6 +49,24 @@
         android:layout_margin="40dp"
         android:backgroundTint="@color/main"
         android:text="Iniciar Sesión" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¿No tiene Cuenta?"
+        android:textColor="@color/main"
+        android:paddingLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"></TextView>
+    <Button
+        android:id="@+id/createAccount_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear Una"
+        android:paddingLeft="40dp"
+        android:textAlignment="textStart"
+        android:textStyle="bold"
+        android:backgroundTint="#00FFFFFF"
+        android:textColor="@color/main" />
 
 
 </LinearLayout>

@@ -53,34 +53,71 @@
                 android:padding="7dp"
                 android:textSize="18sp"/>
 
-            <RadioGroup
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:padding="10dp">
 
-                <RadioButton
-                    android:id="@+id/cpeque_rb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="Caja Pequeña" />
+                <TableRow
+                    android:id="@+id/tableRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <RadioButton
-                    android:id="@+id/cmediana_rb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Caja Mediana" />
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="caja pequeña" />
 
-                <RadioButton
-                    android:id="@+id/cgrande_rb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Caja Grande" />
+                    <EditText
+                        android:id="@+id/cantpequeña"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
 
-            </RadioGroup>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="caja mediana" />
+
+                    <EditText
+                        android:id="@+id/cantmediana"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="caja grande" />
+
+                    <EditText
+                        android:id="@+id/cantgrande"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </TableRow>
+            </TableLayout>
+
             <Button
                 android:id="@+id/buttonEnviar"
                 android:layout_width="wrap_content"
@@ -117,32 +154,55 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contenido: "
                         android:layout_margin="10dp"
-                        android:textSize="16sp"/>
+                        android:text="caja pequeña:"
+                        android:textSize="16sp" />
+
                     <TextView
-                        android:id="@+id/contenido_pedido_txt"
-                        android:layout_width="250dp"
+                        android:id="@+id/cantpequeña_txt"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
                         android:layout_margin="10dp"
-                        android:textSize="16sp"/>
+                        android:text=""
+                        android:textSize="16sp" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tipo de paquete: "
                         android:layout_margin="10dp"
-                        android:textSize="16sp"/>
+                        android:text="caja mediana:"
+                        android:textSize="16sp" />
+
                     <TextView
-                        android:id="@+id/tipodepaquete_txt"
+                        android:id="@+id/cantmediana_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text=""
+                        android:textSize="16sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="caja grande:"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/cantgrande_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
